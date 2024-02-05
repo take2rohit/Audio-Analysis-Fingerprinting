@@ -1,12 +1,10 @@
 # FFT Analysis and Audio Fingerprinting
 
----
-
-The repository builds completely upon PyTorch and is capable of GPU optimization for computing FFT, batch processing, etc
+The repository builds completely upon PyTorch and is capable of GPU optimization for computing FFT, batch processing, etc. Code is tested on Nvidia 2080Ti (CUDA 10.2). A100 and other A series GPU may face compatibility issues.
 
 ## How to run
 
-Clone this repository and install the requirments using `requirements.txt`
+Clone this repository and install the dependencies using `requirements.txt`
 
 ### FFT analysis
 
@@ -30,7 +28,11 @@ Clone this repository and install the requirments using `requirements.txt`
 
 #### Describe a scenario in data science, other than audio processing, where FFT could be a useful tool. What kind of insights or transformations might FFT provide in your chosen scenario?
 
-**Answer:** In finance, FFT can be used for analyzing time series data, such as stock prices. FFT can help in identifying cyclical patterns, trends, and seasonality in data, providing insights into underlying market dynamics. This can be crucial for forecasting, algorithmic trading, and risk management by transforming time-domain data into the frequency domain, where it's easier to analyze repetitive patterns and anomalies.
+**Answer:** In computer vision, a specific application of FFT (Fast Fourier Transform) is in image compression and enhancement within satellite image analysis for environmental monitoring. Using FFT allows for the transformation of satellite images into the frequency domain, enabling:
+
+- *Noise Reduction:* Identification and isolation of noise components to enhance image clarity.
+- *Image Compression:* Reduction of redundant frequency components to compress images without significantly affecting visual quality.
+- *Feature Enhancement:* Amplification of specific frequency bands to highlight environmental features like deforestation areas, water bodies, or urban expansion.
 
 #### Can you explain the role of Fast Fourier Transform (FFT) in audio signal processing? How is FFT utilized for transforming audio data into a format suitable for analysis and pattern recognition?
 
@@ -42,7 +44,7 @@ Clone this repository and install the requirments using `requirements.txt`
 
 #### In a spectrogram, what does the intensity of a color at a specific point signify? How would you differentiate noise from meaningful data in a spectrogram?
 
-**Answer:** In a spectrogram, the intensity of a color at a specific point represents the magnitude (or power) of a frequency component at a particular time. Brighter colors indicate higher energy or amplitude at that frequency and time. Differentiating noise from meaningful data involves analyzing the consistency, pattern, and spread of spectral components; noise often appears as random, sporadic, or uniformly distributed energy across frequencies, whereas meaningful signals display structured, predictable patterns.
+**Answer:** In a spectrogram, the intensity of a color at a specific point represents the magnitude (or power) of a frequency component at a particular time. Brighter colors indicate higher energy or amplitude at that frequency and time. Differentiating noise from meaningful data involves analyzing the consistency, pattern, and spread of spectral components; noise often appears as random, sporadic, or uniformly distributed energy across frequencies, whereas meaningful signals display structured, predictable patterns. If there is a noise prior, we can remove it via designing a band pass, high/low pass filters. 
 
 #### Describe how spectrograms are used in sound recognition systems. What features within a spectrogram are typically analyzed for recognizing different sounds or music?
 
@@ -77,5 +79,6 @@ Clone this repository and install the requirments using `requirements.txt`
 
 #### Outside of the intended theoretical approaches above, if you would like to take another approach, please provide any reasoning and additional context necessary with your answer.
 
-**Answer:** An example could be leveraging deep learning for direct audio pattern recognition without traditional fingerprinting, exploiting neural networks' ability to learn complex patterns and perform end-to-end audio classification. This approach can potentially reduce the need for explicit feature extraction and offer superior performance in recognizing complex sounds and audio quality variations.
-#### Submitted by: [Rohit Lal](https://rohitlal.net/)
+**Answer:** An example could be leveraging deep learning for direct audio pattern recognition without traditional fingerprinting (like MFCC), exploiting neural networks' ability to learn complex patterns and perform end-to-end audio classification. This approach can potentially reduce the need for explicit feature extraction and offer superior performance in recognizing complex sounds and audio quality variations.
+
+##### Submitted by: [Rohit Lal](https://rohitlal.net/)
