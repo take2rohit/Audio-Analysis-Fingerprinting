@@ -6,6 +6,16 @@ The repository builds completely upon PyTorch and is capable of GPU optimization
 
 Clone this repository and install the dependencies using `requirements.txt`
 
+### Alteration Analysis
+
+- `AnalyseAlteration.ipynb` : Study how metric changes when the level of same alteration type is varied.
+- `SpectrogramCompare_scoring.ipynb` : Create three different audio alterations and make an automated spectrogram comparison with a proper scoring system. Alterations are selection is explained in the notebook.
+- `audio_helper.py` : Contains all helper functions for plotting, adding alteration, etc.
+- `audio_analysis.py` : A class for analyzing audio files, generating spectrograms, and comparing them using various metrics. 
+- `data` : Contains altered audio.
+- Old code (given during round 1) contains FFT analysis, spectrogram generation, etc.
+
+
 ### FFT analysis
 
 - Run `fft.ipynb` 
