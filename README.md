@@ -20,6 +20,67 @@ Clone this repository and install the dependencies using `requirements.txt`
 
 ## Therotical FAQs
 
+### Round 2 
+
+#### Describe the process of performing FFT on an audio signal. How does this transformation aid in identifying unique features within the audio for comparison purposes?
+
+**Answer:**: The Fast Fourier Transform (FFT) is a mathematical algorithm that transforms time-domain signals into frequency-domain. For audio, this process involves sampling the signal and breaking it into bins, each representing a specific frequency component. This transformation is critical for identifying unique features such as pitch, tone, and timbre, allowing for comparison of these characteristics across different audio files.
+
+#### Explain the importance of spectrogram resolution in audio analysis. How does the choice of parameters (e.g., window size, overlap) affect the outcome of your comparisons?
+
+**Answer:**: Spectrogram resolution determines how precisely the frequency and time information is represented. A larger window size increases frequency resolution but decreases time resolution, and vice versa. Overlap between windows allows for smoother transitions and more data points for analysis. The choice of these parameters affects the clarity of the audio features and the accuracy of comparisons.
+
+#### Discuss the challenges in automating the comparison of audio files, especially when dealing with alterations. How did you address these challenges in your code?
+
+**Answer:**: Automating the comparison of audio files, particularly with alterations, presents several challenges:
+
+1. *Variation in Alterations*: Different types of alterations can affect the audio in various ways, such as changing the frequency content, adding noise, or altering the dynamic range. This requires a comparison system that can detect and quantify a wide range of changes.
+
+2. *Consistency Across Different Audio Qualities and Formats*: Audio files can have different sample rates, bit depths, and formats, which can affect the comparison results if not standardized.
+
+3. *Subjectivity of Audio Perception*: Audio quality and alterations can be subjective and not always perfectly quantifiable with metrics.
+
+In the provided code snippet, the challenges are addressed as follows:
+
+1. *Robust Metrics*: The system employs a variety of metrics to capture different aspects of the audio signal alterations, such as MSE for overall deviation, PSNR for signal fidelity, and SSIM for structural changes. These metrics can comprehensively reflect the degree of alteration in the audio file.
+
+2. *Preprocessing*: Before comparison, audio files are processed to standardize their formats. This is implied by the use of a single sample rate parameter in the alteration functions. This standardization ensures that comparisons are not affected by differences in sample rate or format.
+
+3. *Controlled Alterations*: The code applies specific and controlled alterations to the audio waveform, which makes the impact of these alterations predictable and quantifiable. For instance, the 'minor' alteration applies a bass boost, 'moderate' adds noise and filters the band, and 'strong' applies a lowpass filter. Understanding the exact nature of these alterations allows the metrics to be interpreted accurately.
+
+4. *Handling Noise*: The code adds noise in a controlled manner (in the 'moderate' alteration), allowing the comparison metrics to account for the added noise in relation to the original signal.
+
+5. *Frequency-specific Alterations*: By applying specific filters, such as a bandpass for 'moderate' and lowpass for 'strong' alterations, the system can more accurately assess how such frequency-specific changes affect the audio quality.
+
+To further improve the automation, the system could incorporate machine learning techniques to learn from a dataset of audio alterations and predict the alteration type or quantify the degree of alteration more accurately. Additionally, audio fingerprinting could be employed to detect if two audio files are perceptually similar despite technical alterations.
+
+#### In creating the scoring system, what factors did you consider to quantify the degree of alteration accurately? How does your system handle variations in audio quality or format?
+
+**Answer:**: In creating the scoring system to quantify the degree of alteration accurately, the system would consider the following factors for applying audio alterations:
+
+1. *Magnitude of Alteration*: The scoring system would use metrics such as Mean Squared Error (MSE) to measure the magnitude of changes from the original waveform. This reflects the intensity of alterations like bass boost, noise addition, and frequency filtering.
+
+2. *Frequency Content Changes*: Since different alterations affect the frequency content in distinct ways, the scoring system would use metrics like Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index (SSIM) to evaluate how the harmonic and tonal characteristics are affected.
+
+3. *Cosine Similarity*: This metric would assess how the direction of the audio waveform vector changes with each alteration, which can indicate shifts in the overall shape of the audio spectrum.
+
+4. *KL Divergence*: This would measure how the probability distribution of the audio signal's amplitude or power spectrum deviates from the original, which is especially relevant for the noise addition in moderate alterations.
+
+5. *Histogram Correlation*: This would evaluate how the overall statistical distribution of the waveform's amplitude changes, remaining robust against alterations that preserve the overall shape but change specific features.
+
+To handle variations in audio quality or format, the system would perform preprocessing steps such as:
+
+- *Normalization*: Adjusting the waveform's amplitude to a standard level to ensure consistent measurement across different recordings.
+- *Resampling*: Converting all audio files to a common sample rate to mitigate the impact of sample rate variations.
+- *Format Standardization*: Converting all files to a uniform audio format before analysis, to avoid discrepancies due to compression artifacts or format-specific features.
+
+By using these metrics and preprocessing steps, the scoring system aims to provide a reliable quantification of the degree of alteration, making it possible to compare audio files in a consistent and objective manner regardless of their initial quality or format.
+
+#### Describe any advanced data visualization techniques you employed to present the comparison results. What insights can these visualizations provide to someone analyzing the audio files?
+
+**Answer:**: Techniques like spectrograms, wavelet transforms, or multi-dimensional scaling provide visual representations of audio features and differences. These visualizations can help in identifying patterns, anomalies, or alterations in the audio by making them visible, which might not be evident in the raw audio or through basic statistical measures.
+
+
 ### FFT Analysis
 
 #### How does the Fast Fourier Transform (FFT) differ from the Discrete Fourier Transform (DFT) in terms of computation? Why is FFT preferred for large datasets?

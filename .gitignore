@@ -1,2 +1,8 @@
-data/
+data/LibriSpeech/
+data/SpeechCommands/
+data/waves_yesno/
+data/compare_altered_audio
 *.pdf
+__pycache__/
+data/*.gz
+*.wav
